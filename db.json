@@ -1,12 +1,24 @@
 {
-  "todo": [
+  "todos": [
     {
-      "todo": "Learn html",
+      "text": "Learn html",
       "id": 1
     },
     {
-      "todo": "Learn python",
+      "text": "Learn python",
       "id": 2
+    },
+    {
+      "text": "learn java",
+      "id": 3
+    },
+    {
+      "text": "Learn Css",
+      "id": 4
+    },
+    {
+      "text": "Learn c++",
+      "id": 5
     }
   ]
 }

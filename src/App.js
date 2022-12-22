@@ -4,26 +4,26 @@ import Addtodo from "./Components/Addtodo";
 import { useState, useEffect } from "react";
 
  function App() {
-  const [todo, setTodo] = useState([]);
+  const [todos, setTodos] = useState([]);
 
   useEffect(() => {
     const getTodo = async () => {
       const todoFromServer = await fetchTodo();
-      setTodo(todoFromServer);
+      setTodos(todoFromServer);
     };
 
     getTodo();
   }, []);
 
   const fetchTodo = async () => {
-    const res = await fetch("http://localhost:5000/todo");
+    const res = await fetch("http://localhost:5000/todos");
     const data = await res.json();
 
     return data;
   };
 
   const addTodo = async (todo) => {
-    const res = await fetch("http://localhost:5000/todo", {
+    const res = await fetch("http://localhost:5000/todos", {
       method: "POST",
       headers: {
         "content-type": "application/json",
@@ -34,25 +34,30 @@ import { useState, useEffect } from "react";
 
     const data = await res.json();
 
-    setTodo([...todo, data]);
+    setTodos([...todos, data]);
   };
 
   const deleteTodo = async (id) => {
-    await fetch(`http://localhost:5000/todo/${id}`, {
+     await fetch(`http://localhost:5000/todos/${id}`, {
       method: "DELETE",
     });
 
-    setTodo(todo.filter((todo) => todo.id !== id));
+
+    setTodos(todos.filter((todos) => todos.id !== id))
   };
 
   return (
+    <>
     <div className="todo_new">
+    </div>
       <div className="todo">
         <Header />
         <Addtodo onAdd={addTodo} />
-        <Todos todo={todo} onDelete={deleteTodo} />
+        <Todos todo={todos} onDelete={deleteTodo} />
       </div>
-    </div>
+    
+    
+      </>
   );
 }
 
